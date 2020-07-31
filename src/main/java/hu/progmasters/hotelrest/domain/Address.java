@@ -1,5 +1,7 @@
 package hu.progmasters.hotelrest.domain;
 
+import hu.progmasters.hotelrest.domain.dto.AddressForm;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
@@ -14,6 +16,15 @@ public class Address {
 
     @Column(name = "Street")
     private String street;
+
+    public Address(AddressForm addressForm) {
+        this.city = addressForm.getCity();
+        this.zipCode = addressForm.getZipCode();
+        this.street = addressForm.getStreet();
+    }
+
+    public Address() {
+    }
 
     public String getCity() {
         return city;

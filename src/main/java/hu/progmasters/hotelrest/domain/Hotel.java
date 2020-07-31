@@ -2,6 +2,8 @@ package hu.progmasters.hotelrest.domain;
 
 
 
+import hu.progmasters.hotelrest.domain.dto.HotelForm;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +36,16 @@ public class Hotel {
 
     @OneToMany(mappedBy = "hotel")
     private List<Room> roomList = new ArrayList<>();
+
+    public Hotel(HotelForm hotelForm) {
+        this.name = hotelForm.getName();
+        this.stars = hotelForm.getStars();
+        this.description = hotelForm.getDescription();
+        this.address = new Address(hotelForm.getAddressForm());
+    }
+
+    public Hotel() {
+    }
 
     public Long getId() {
         return id;
